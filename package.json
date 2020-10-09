@@ -1,0 +1,15 @@
+{
+  "name": "image-resize",
+  "version": "1.0.0",
+  "description": "Mass image resize in folder",
+  "main": "./bin/index.js",
+  "bin": {
+    "image-resize": "./bin/index.js"
+  },
+  "author": "Andrea Bucaletti",
+  "license": "ISC",
+  "dependencies": {
+    "jimp": "^0.16.1",
+    "yargs": "^16.0.3"
+  }
+}
