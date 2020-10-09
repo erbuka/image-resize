@@ -4,6 +4,9 @@ Command line tool to resize all the PNG and JPEG images in the given directory.
 
 ## Install
 
+```
+npm install -g https://github.com/erbuka/image-resize
+```
 
 
 ## Usage
