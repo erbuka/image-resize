@@ -9,6 +9,7 @@
   "author": "Andrea Bucaletti",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.4.0",
     "jimp": "^0.16.1",
     "yargs": "^16.0.3"
   }

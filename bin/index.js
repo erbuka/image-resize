@@ -3,11 +3,13 @@
 const fs = require("fs");
 const jimp = require("jimp");
 const path = require("path");
+const colors = require("colors");
 const { argv } = require("yargs");
 
+
 const fileExt = ["jpeg", ".jpg", ".png"];
-const targetDir = "./test-folder" || argv.dir;
-const targetSize = 1024 || parseInt(argv.size);
+const targetDir = argv.dir || ".";
+const targetSize = parseInt(argv.size) || 1024;
 
 const listFiles = function (dir) {
     let result = []
@@ -19,21 +21,27 @@ const listFiles = function (dir) {
     return result;
 }
 
-for (let f of listFiles(targetDir)) {
-    jimp.read(f, (err, val, coords) => {
-        if (err) {
-            console.error(err.message);
-            return;
-        }
+const files = listFiles(targetDir);
 
-        let [w, h] = [val.bitmap.width, val.bitmap.height];
+if (files.length === 0) {
+    console.log("No images were found".yellow)
+} else {
+    for (let f of files) {
+        jimp.read(f, (err, val, coords) => {
+            if (err) {
+                console.error(err.message);
+                return;
+            }
 
-        let nw = w >= h ? targetSize : w / h * targetSize;
-        let nh = w >= h ? targetSize * h / w : targetSize;
+            let [w, h] = [val.bitmap.width, val.bitmap.height];
 
-        console.log(`Resize ${path.basename(f)}: [${w} x ${h}] => [${nw} x ${nh}]`);
+            let nw = w >= h ? targetSize : w / h * targetSize;
+            let nh = w >= h ? targetSize * h / w : targetSize;
 
-        val.resize(nw, nh).write(f);
+            console.log(`Resize ${colors.yellow(path.basename(f))}: [${w} x ${h}] => [${nw} x ${nh}]`);
 
-    });
+            val.resize(nw, nh).write(f);
+
+        });
+    }
 }
