@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Mass image resize in folder",
   "main": "./bin/index.js",
-  "private" :false,
+  "private": false,
   "bin": {
     "image-resize": "./bin/index.js"
   },

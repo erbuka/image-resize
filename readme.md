@@ -20,4 +20,5 @@ Options:
 ```
 --dir <path>        Target directory, default is "."
 --size <number>     Target size, default is 1024
+--recursive         Recursively process folders
 ```
